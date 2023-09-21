@@ -9,11 +9,6 @@ export class MessagesService {
   private clientToRoom: Record<string, string> = {};
 
   async identify(name: string, clientId: string, room: string) {
-    // console.log({
-    //   clientId,
-    //   rooms: this.rooms,
-    //   clientToRoom: this.clientToRoom,
-    // });
     this.clientToRoom[clientId] = room;
     if (!this.rooms[room]) {
       this.rooms[room] = [];
@@ -21,26 +16,11 @@ export class MessagesService {
     return Object.values(this.clientToRoom);
   }
 
-  async getClientName(clientId: string) {
-    const room = this.clientToRoom[clientId];
-    if (room) {
-      return this.clientToRoom[clientId];
-    }
-    return null; // No room found for this client.
-  }
-
   async create(
     createMessageDto: CreateMessageDto,
     clientId: string,
     room: string,
   ) {
-    console.log('create', {
-      rooms: this.rooms,
-      clientToRoom: this.clientToRoom,
-      clientId: createMessageDto.clientId,
-      room,
-    });
-    // const room = this.clientToRoom[clientId];
     if (room) {
       if (!this.rooms[room]) {
         this.rooms[room] = [];
