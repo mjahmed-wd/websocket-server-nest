@@ -40,11 +40,10 @@ export class MessagesGateway {
 
   @SubscribeMessage('join')
   joinRoom(
-    @MessageBody('name') name: string,
     @MessageBody('room') room: string,
     @ConnectedSocket() client: Socket,
   ) {
     client.join(room); // Join the "some-room" room.
-    return this.messagesService.identify(name, client.id, room);
+    return this.messagesService.identify(client.id, room);
   }
 }

@@ -1,6 +1,6 @@
-import { Message } from '../entities/message.entity';
+import { IMessage } from '../entities/message.entity';
 
-export class CreateMessageDto extends Message {
+export class CreateMessageDto extends IMessage {
   readonly room: string;
   readonly clientId: string;
 }
